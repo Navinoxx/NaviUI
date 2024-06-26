@@ -24,38 +24,28 @@ export const Basic = {
             )}
         </Grid>
     ),
-}
+}   
 
 export const Complex = {
     args: {
         children: 'Box',
     },
     render: (args) => (
-        <Grid container spacing={2} columns={12} {...args}>
-            <Grid item span={12}>
-                <Box component="div" className="border p-5 bg-slate-100 flex justify-center items-center">
-                    {args.children} span 12
-                </Box>
+        <Grid container spacing={2} columns={12} rows={10} {...args}>
+            <Grid item colSpan={12} className="border p-5 bg-slate-100 flex justify-center items-center">
+                {args.children} - colSpan 12
             </Grid>
-            <Grid item span={6} >
-                <Box component="div" className="border p-5 bg-slate-100 flex justify-center items-center">
-                    {args.children} span 6
-                </Box>
+            <Grid item colSpan={6} rowSpan={2} className="border p-5 bg-slate-100 flex justify-center items-center">
+                {args.children} - colSpan 6 / rowSpan 2
             </Grid>
-            <Grid item span={6} >
-                <Box component="div" className="border p-5 bg-slate-100 flex justify-center items-center">
-                    {args.children} span 6
-                </Box>
+            <Grid item colSpan={6} className="border p-5 bg-slate-100 flex justify-center items-center">
+                {args.children} - colSpan 6
             </Grid>
-            <Grid item span={2}>
-                <Box component="div" className="border p-5 bg-slate-100 flex justify-center items-center">
-                    {args.children} span 2
-                </Box>
+            <Grid item colSpan={2} className="border p-5 bg-slate-100 flex justify-center items-center">
+                {args.children} - colSpan 2
             </Grid>
-            <Grid item span={10} >
-                <Box component="div" className="border p-5 bg-slate-100 flex justify-center items-center">
-                    {args.children} span 11
-                </Box>
+            <Grid item colSpan={10} rowSpan={3} className="border p-5 bg-slate-100 flex justify-center items-center">
+                {args.children} - colSpan 11 / rowSpan 3
             </Grid>
         </Grid>
     ),

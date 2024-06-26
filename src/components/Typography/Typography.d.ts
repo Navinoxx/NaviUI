@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { FC } from "react";
 
 /**
  * Props for the Typography component.
@@ -18,11 +18,6 @@ interface TypographyProps {
      * The class name to apply to the typography element.
      */
     className?: string;
-
-    /**
-     * The content of the typography element.
-     */
-    children?: ReactNode;
 }
 
 export const Typography: FC<TypographyProps>;

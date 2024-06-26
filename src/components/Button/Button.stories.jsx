@@ -1,5 +1,7 @@
+import { Trash } from "@/icons/trash";
 import { Button } from "./Button";
 import { action } from "@storybook/addon-actions";
+import { Stack } from "../Layout";
 
 export default {
     title: 'Components/Button',
@@ -15,19 +17,23 @@ export default {
         color: {
             control: { type: 'none' },
         },
+        rounded: {
+            control: { type: 'select' },
+            options: [false, 'full'],
+        },
         size: {
             control: { type: 'radio' },
         },
     },
     render: (args) => (
         <div className="flex gap-5">
-            <Button {...args} color="blue" />
-            <Button {...args} color="red" />
-            <Button {...args} color="green" />
-            <Button {...args} color="indigo" />
-            <Button {...args} color="purple" />
-            <Button {...args} color="pink" />
-            <Button {...args} color="black" />
+            <Button {...args} color="blue" rounded/>
+            <Button {...args} color="red" rounded/>
+            <Button {...args} color="green" rounded/>
+            <Button {...args} color="indigo" rounded/>
+            <Button {...args} color="purple" rounded/>
+            <Button {...args} color="pink" rounded/>
+            <Button {...args} color="black" rounded/>
         </div>
     ),
 }
@@ -62,4 +68,21 @@ export const Ghost = {
         variant: 'ghost',
         onClick: action('onClick'),
     },
+}
+
+export const IconAndPosition = {
+    args: {
+        children: 'Delete',
+        variant: 'outline',
+        icon: <Trash />,
+        onClick: action('onClick'),
+    },
+    render: (args) => (
+        <Stack direction="row" spacing={2}>
+            <Button {...args} color="blue" iconPosition="start" rounded/>
+            <Button {...args} color="red" iconPosition="end" rounded/>
+            <Button {...args} color="green" iconPosition="top" rounded/>
+            <Button {...args} color="black" iconPosition="bottom" rounded/>
+        </Stack>
+    ),
 }

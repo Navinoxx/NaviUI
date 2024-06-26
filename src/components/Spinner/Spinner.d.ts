@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { FC } from "react";
 
 interface SpinnerProps {
     variant?: "regular" | "double" | "edge" | "dashed";

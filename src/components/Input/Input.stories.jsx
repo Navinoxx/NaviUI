@@ -13,7 +13,7 @@ export default {
         },
     },
     render: (args) => (
-        <div className="grid grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <Input {...args} color="blue" />
             <Input {...args} color="red" />
             <Input {...args} color="green" />

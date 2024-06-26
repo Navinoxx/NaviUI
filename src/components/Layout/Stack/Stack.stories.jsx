@@ -6,7 +6,6 @@ const boxes = [1, 2, 3]
 export default {
     title: 'Components/Layout/Stack',
     component: Stack,
-    tags: ['autodocs'],
     parameters: {
         layout: 'fullscreen',
     },
@@ -28,7 +27,7 @@ export default {
         },
     },
     render: (args) => (
-        <Stack {...args}>
+        <Stack {...args} className="h-[100vh]">
             {boxes.map(box => 
                 <Box component="div" className="border p-5 bg-slate-100 flex justify-center items-center" key={box} {...args} >
                     {args.children} {box}

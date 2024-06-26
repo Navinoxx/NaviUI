@@ -1,9 +1,8 @@
-import { FC, ReactNode } from "react";
+import { FC } from "react";
 
 interface BoxProps {
     component?: string;
     className?: string;
-    children?: ReactNode;
 }
 
 export const Box: FC<BoxProps>;

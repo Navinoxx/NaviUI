@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { FC } from "react";
 
 interface LoaderProps {
     animation?: "bounce" | "pulse" | "ping" | "fade" | "scale" | "flip";

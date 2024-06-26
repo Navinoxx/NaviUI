@@ -1,4 +1,4 @@
-import { cva } from "class-variance-authority";
+import { typographyStyles } from "@/styles/typography";
 import { cn } from "@/utils/cn";
 import PropTypes from "prop-types";
 
@@ -17,46 +17,12 @@ const variantMapping = {
     overline: "span",
 };
 
-const typographyStyles = cva([""], {
-    variants: {
-        variant: {
-            h1: "text-8xl",
-            h2: "text-6xl",
-            h3: "text-5xl",
-            h4: "text-4xl",
-            h5: "text-2xl",
-            h6: "text-xl",
-            subtitle1: "text-base",
-            subtitle2: "text-sm",
-            body1: "text-base",
-            body2: "text-sm",
-            caption: "text-xs",
-            overline: "text-xs uppercase",
-        },
-        align: {
-            left: "text-left",
-            center: "text-center",
-            right: "text-right",
-        },
-    },
-    compoundVariants: [
-        {
-            variant: ["h1", "h2", "h3", "h4", "h5", "h6"],
-            className: "leading-tight",
-        },
-        {
-            variant: ["h3", "h4", "h5", "subtitle1", "body1", "body2", "caption", "overline"],
-            className: "font-medium",
-        },
-        {
-            variant: ["h6", "subtitle2"],
-            className: "font-semibold",
-        },
-    ],
-}); 
-
 export const Typography = ({ variant, align, className, ...props }) => {
-    const Component = variantMapping[variant] || "span";
+    if (!Object.prototype.hasOwnProperty.call(variantMapping, variant)) {
+        throw new Error(`Invalid variant: ${variant}`);
+    }
+
+    const Component = variantMapping[variant];
 
     return (
         <Component

@@ -1,5 +1,4 @@
 import { forwardRef } from "react";
-import { cn } from "@/utils/cn";
 import PropTypes from "prop-types";
 
 export const Box = forwardRef(({ component, className, ...props }, ref) => {
@@ -8,7 +7,7 @@ export const Box = forwardRef(({ component, className, ...props }, ref) => {
     return (
         <Component
             ref={ref}
-            className={cn(({ component }), className)}
+            className={className}
             {...props}
         />
     )
