@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/utils/cn";
-import { cva } from "class-variance-authority";
+import { AccordionBodyStyles } from "@/styles/accordion";
 import { useComponentContext } from "@/context/ContextProvider";
 import PropTypes from "prop-types";
 
@@ -13,8 +13,6 @@ const openAnimation = {
         height: 0,
     },
 }
-
-const AccordionBodyStyles = cva(["overflow-hidden", "px-4 py-3"], {});
 
 export const AccordionBody = forwardRef(({ children, className, ...props }, ref) => {
     const { expanded } = useComponentContext()

@@ -2,11 +2,9 @@ import React ,{ useState } from "react";
 import { ContextProvider } from "@/context/ContextProvider";
 import { AccordionHeader } from "./AccordionHeader";
 import { AccordionBody } from "./AccordionBody";
-import { cva } from "class-variance-authority";
+import { accordionStyles } from "@/styles/accordion";
 import { cn } from "@/utils/cn";
 import PropTypes from "prop-types";
-
-const accordionStyles = cva(["block", "relative", "w-full", "divide-y", "divide-inherit"], {});
 
 export const Accordion = ({ icon = null, variant, color, children }) => {
     const [expanded, setExpanded] = useState(false);
