@@ -68,15 +68,9 @@ export const optionStyles = cva([
     "overflow-y-auto",
     "overflow-x-hidden",
     "border",
+    "border-slate-300",
     "rounded",
     "bg-inherit",
     "cursor-pointer",
     "mt-0.5",
-], {
-    variants: {
-        color: borderColor,
-    },
-    defaultVariants: {
-        color: "black",
-    },
-});
+], {});

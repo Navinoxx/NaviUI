@@ -75,15 +75,9 @@ export const thumbStyles = cva([
     "absolute",
     "w-5",
     "h-5",
+    "flex",
+    "justify-center",
     "rounded-full",
-    "before:content-['']",
-    "before:absolute",
-    "before:w-full",
-    "before:h-full",
-    "after:content-['']",
-    "after:absolute",
-    "after:w-full",
-    "after:h-full",
 ], {
     variants: {
         color: bgColor,
@@ -95,3 +89,11 @@ export const thumbStyles = cva([
         color: "blue"
     }
 });
+
+export const markStyles = cva([
+    "absolute",
+    "w-1",
+    "h-1",
+    "rounded-full",
+    "bg-slate-400",
+], {});

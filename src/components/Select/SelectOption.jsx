@@ -25,7 +25,7 @@ export const SelectOption = ({ value, children, ...props }) => {
             role="option"
             value={value}
             aria-selected={isSelected}
-            className="hover:bg-gray-200 px-2 py-1 aria-selected:bg-gray-200"
+            className="hover:bg-slate-200 px-2 py-1 aria-selected:bg-slate-200"
             onClick={handleOptionClick}
             {...props}
         >
