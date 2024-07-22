@@ -1,6 +1,7 @@
 export * from "./Accordion";
 export * from "./Alert";
 export * from "./Badge";
+export * from "./Breadcrumbs";
 export * from "./Button";
 export * from "./ButtonGroup";
 export * from "./Checkbox";
@@ -13,6 +14,7 @@ export * from "./Loader";
 export * from "./Select";
 export * from "./Slider";
 export * from "./Spinner";
+export * from "./Switch";
 export * from "./Tabs";
 export * from "./Tooltip";
 export * from "./Typography";
