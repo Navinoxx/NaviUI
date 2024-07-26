@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Rating } from "./Rating";
 import { Typography } from "../Typography";
+import { Heart } from "@/icons";
 
 export default {
     title: "Components/Rating",
@@ -37,12 +38,58 @@ export const Basic = {
     }
 };
 
-export const RatingPrecision = {
+export const HoverFeedback = {
+    args: {},
+    render: (args) => {
+        const [value, setValue] = useState(2);
+        const [hover, setHover] = useState(-1);
+
+        const labels = {
+            0.5: 'Useless',
+            1: 'Useless+',
+            1.5: 'Poor',
+            2: 'Poor+',
+            2.5: 'Ok',
+            3: 'Ok+',
+            3.5: 'Good',
+            4: 'Good+',
+            4.5: 'Excellent',
+            5: 'Excellent+',
+        };
+
+        return (
+            <div className="flex w-32">
+                <Rating 
+                    {...args} 
+                    name="hover-feedback" 
+                    value={value}
+                    onChange={(event, newValue) => {
+                        setValue(newValue);
+                    }}
+                    onChangeActive={(event, newHover) => {
+                        setHover(newHover);
+                    }}
+                />
+                {value !== null && <span className="ml-5">{labels[hover !== -1 ? hover : value]}</span>}
+            </div>
+        )
+    }
+}
+
+export const Customization = {
     args: {},
     render: (args) => (
         <div className="space-y-2">
-            <Rating {...args} name="half-rating" defaultValue={2} precision={0.5}/>
-            <Rating {...args} name="half-rating-read" defaultValue={2} precision={0.5} readOnly/>
+            <Typography variant="body1">Custom icon and color</Typography>
+            <Rating 
+                {...args} 
+                name="customized-color" 
+                defaultValue={2} 
+                icon={<Heart />}
+                iconColor="red"
+            />
+            <Typography variant="body1">10 stars</Typography>
+            <Rating {...args} name="customized-10" defaultValue={2} max={10}/>
         </div>
     )
-};
+}

@@ -1,4 +1,4 @@
-export const Star = () => {
+export const Heart = () => {
 
     return (
         <svg
@@ -10,7 +10,7 @@ export const Star = () => {
             aria-hidden="true"
             focusable="false"
         >
-            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
+            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
         </svg>
     );
-};
+}

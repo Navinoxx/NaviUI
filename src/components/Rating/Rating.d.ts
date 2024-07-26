@@ -4,7 +4,12 @@ interface RatingProps {
     name?: string;
     max: number;
     value: number;
+    defaultValue?: number;
+    icon?: JSX.Element;
+    iconColor?: string;
     onChange?: (value: number) => void;
+    disabled?: boolean;
+    readOnly?: boolean;
     className?: string;
 }
 

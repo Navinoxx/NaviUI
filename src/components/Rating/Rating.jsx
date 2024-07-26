@@ -4,11 +4,10 @@ import { cn } from "@/utils/cn";
 import { ratingStyles } from "@/styles/rating";
 import PropTypes from "prop-types";
 
-export const Rating = ({ name, max = 5, value, defaultValue, onChange, disabled, readOnly, className, ...props }) => {
+export const Rating = ({ name, max = 5, value, defaultValue, icon, iconColor = "gold", onChange, onChangeActive, disabled, readOnly, className, ...props }) => {
     const id = useId();
     const [currentValue, setCurrentValue] = useState(defaultValue || value);
     const [hover, setHover] = useState(null);
-    console.log(currentValue);
 
     useEffect(() => {
         if (value !== undefined) {
@@ -19,14 +18,26 @@ export const Rating = ({ name, max = 5, value, defaultValue, onChange, disabled,
     const handleMouseEnter = (ratingIndex) => {
         if (!disabled && !readOnly) {
             setHover(ratingIndex);
+
+            if (onChangeActive) {
+                onChangeActive(null, ratingIndex);
+            }
         }
     };
 
-    const handleMouseLeave = () => {
+    const handleMouseLeave = (event) => {
         setHover(null);
+
+        if (!disabled && !readOnly) {
+            if (onChangeActive) {
+                onChangeActive(event, -1);
+            }
+        }
     };
 
     const handleClick = (event, ratingValue) => {
+        if (value === null) return
+        
         if (!disabled && !readOnly) {
             setCurrentValue(ratingValue);
             if (onChange) {
@@ -44,10 +55,13 @@ export const Rating = ({ name, max = 5, value, defaultValue, onChange, disabled,
                         htmlFor={`${id}${i}`} 
                         className={cn(ratingStyles({ disabled, readOnly }), className)}
                         onMouseEnter={() => handleMouseEnter(ratingValue)}
-                        onMouseLeave={handleMouseLeave}
+                        onMouseLeave={(e) => handleMouseLeave(e)}
                     >
-                        <span style={{ color: ratingValue <= (hover || currentValue) ? "gold" : "transparent" }} >
-                            <Star/>
+                        <span 
+                            className="text-gray-300 transition-colors"
+                            style={{ color: ratingValue <= (hover || currentValue) && iconColor }}
+                        >
+                            {icon || <Star />}
                         </span>
                     </label>
                     <input 
@@ -67,7 +81,7 @@ export const Rating = ({ name, max = 5, value, defaultValue, onChange, disabled,
     }
 
     return (
-        <span className="flex gap-2">
+        <span className="flex">
             {renderStars()}
         </span>
     )
@@ -78,7 +92,11 @@ Rating.propTypes = {
     max: PropTypes.number,
     value: PropTypes.number,
     defaultValue: PropTypes.number,
+    icon: PropTypes.node,
+    iconColor: PropTypes.string,
+    precision: PropTypes.number,
     onChange: PropTypes.func,
+    onChangeActive: PropTypes.func,
     disabled: PropTypes.bool,
     readOnly: PropTypes.bool,
     className: PropTypes.string
