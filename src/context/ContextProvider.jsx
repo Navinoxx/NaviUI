@@ -6,10 +6,6 @@ export const Context = createContext()
 export const useComponentContext = () => {
     const context = useContext(Context)
 
-    if (!context) {
-        throw new Error("useContext must be used within an Provider")
-    }
-
     return context
 }
 

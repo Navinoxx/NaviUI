@@ -25,7 +25,7 @@ export const typographyStyles = cva([""], {
     compoundVariants: [
         {
             variant: ["h1", "h2", "h3", "h4", "h5", "h6"],
-            className: "leading-tight",
+            className: "!leading-[1.167]",
         },
         {
             variant: ["h3", "h4", "h5", "subtitle1", "body1", "body2", "caption", "overline"],

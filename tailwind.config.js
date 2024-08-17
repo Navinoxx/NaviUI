@@ -12,6 +12,7 @@ export default {
         fade: 'fade 1s ease-in-out infinite',
         scale: 'scale 1s ease-in-out infinite',
         flip: 'flip 1s ease-in-out infinite',
+        wave: 'wave 2s linear 0.5s infinite',
       },
       keyframes: {
         fade: {
@@ -26,6 +27,11 @@ export default {
         flip: {
           '0%': { transform: 'rotateY(0deg)' },
           '100%': { transform: 'rotateY(180deg)' },
+        },
+        wave: {
+          '0%': { transform: 'translateX(-100%)' },
+          '50%': { transform: 'translateX(100%)' },
+          '100%': { transform: 'translateX(100%)' },
         },
       },
     },
