@@ -1,7 +1,10 @@
 import { FC, ReactNode } from 'react';
 
 interface AccordionProps {
-    icon?: boolean;
+    defaultExpanded?: boolean;
+    expanded?: boolean;
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>, newExpanded: boolean) => void;
+    icon?: ReactNode;
     variant?: "solid" | "outline" | "ghost";
     color?: "blue" | "green" | "red" | "indigo" | "purple" | "pink" | "black";
     className?: string;

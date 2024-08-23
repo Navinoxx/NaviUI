@@ -2,25 +2,32 @@ import { forwardRef } from "react";
 import { IconAccordionStyles } from "@/styles/accordion";
 import { useComponentContext } from "@/context/ContextProvider";
 import { buttonStyles } from "@/styles/button";
-import { Chevron } from "@/icons";
 import { cn } from "@/utils/cn";
+import { motion } from "framer-motion";
 import PropTypes from "prop-types";
+import { iconAnimation } from "@/animations/accordion";
 
-export const AccordionHeader = forwardRef(({ iconFirst, children, className, ...props }, ref) => {
-    const { expanded, icon, toggleAccordion, variant, color } = useComponentContext()
+export const AccordionHeader = forwardRef(({ iconFirst = false, children, className, ...props }, ref) => {
+    const { isExpanded, icon, toggleAccordion, variant, color } = useComponentContext()
 
     return (
         <div 
             ref={ref}
             role="button"
-            aria-expanded={expanded}
+            aria-expanded={isExpanded}
             className={cn(buttonStyles({ variant, color }), className)}
             onClick={toggleAccordion}
             {...props}
         >
             <div className={IconAccordionStyles({ iconFirst })}>
                 {children}
-                {icon && <Chevron expanded={expanded}/>}
+                <motion.div
+                    initial={isExpanded ? "open" : "closed"}
+                    animate={isExpanded ? "open" : "closed"}
+                    variants={iconAnimation}
+                >
+                    {icon}
+                </motion.div>
             </div>
         </div>
     )

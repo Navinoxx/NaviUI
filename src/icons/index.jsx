@@ -1,3 +1,4 @@
+export * from "./arrowDown";
 export * from "./chevron";
 export * from "./error";
 export * from "./firstPage";

@@ -3,30 +3,23 @@ import { motion } from "framer-motion";
 import { cn } from "@/utils/cn";
 import { AccordionBodyStyles } from "@/styles/accordion";
 import { useComponentContext } from "@/context/ContextProvider";
+import { openAnimation } from "@/animations/accordion";
 import PropTypes from "prop-types";
 
-const openAnimation = {
-    open: { 
-        height: "auto", 
-    },
-    closed: { 
-        height: 0,
-    },
-}
-
 export const AccordionBody = forwardRef(({ children, className, ...props }, ref) => {
-    const { expanded } = useComponentContext()
+    const { isExpanded } = useComponentContext()
 
     return (
         <motion.div
             ref={ref}
-            initial="closed"
+            initial={isExpanded ? "open" : "closed"}
             exit="closed" 
-            animate={expanded ? "open" : "closed"}
+            animate={isExpanded ? "open" : "closed"}
             variants={openAnimation}
             className="overflow-hidden"
+            {...props}
         >
-            <div className={cn(AccordionBodyStyles(), className)} {...props}>
+            <div className={cn(AccordionBodyStyles(), className)}>
                 {children}
             </div>
         </motion.div>
