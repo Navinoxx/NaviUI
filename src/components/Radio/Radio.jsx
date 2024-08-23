@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { useComponentContext } from "@/context/ContextProvider";
+import { useComponentContext } from "@/context/useComponentContext";
 import { radioStyles, radioSvgStyles } from "@/styles/radioGroup";
 import { cn } from "@/utils/cn";
 import { motion } from "framer-motion";
@@ -7,50 +7,57 @@ import { animation } from "@/animations/radioGroup";
 import PropTypes from "prop-types";
 
 export const Radio = forwardRef(({ value, label, onChange, checked, color, size = 24, labelPlacement, className, ...props }, ref) => {
-    const radioGroup = useComponentContext()
-    const radioState = radioGroup ? radioGroup.radioState : checked
-    const setRadioState = radioGroup ? radioGroup.setRadioState : () => {}
-    const contextOnChange = radioGroup ? radioGroup.onChange : null
-    
+    const radioGroup = useComponentContext();
+    const radioState = radioGroup ? radioGroup.radioState : checked;
+    const setRadioState = radioGroup ? radioGroup.setRadioState : () => {};
+    const contextOnChange = radioGroup ? radioGroup.onChange : null;
+
     const handleChange = (event) => {
-        setRadioState(value)
+        setRadioState(value);
 
         if (contextOnChange) {
-            contextOnChange(event)
+            contextOnChange(event);
         }
 
         if (onChange) {
-            onChange(event)
+            onChange(event);
         }
-    }
+    };
 
-    const isChecked = checked || radioState === value
-    
+    const isChecked = checked || radioState === value;
+
     return (
-        <label 
+        <label
             className={cn(radioStyles({ labelPlacement }), className)}
             {...props}
         >
             <input
-                ref={ref} 
-                type="radio" 
-                aria-hidden="true" 
+                ref={ref}
+                type="radio"
+                aria-hidden="true"
                 className="sr-only"
                 value={value}
                 checked={isChecked}
                 onChange={handleChange}
             />
             <span className={cn(radioSvgStyles({ color }))}>
-                <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" width={size} height={size} fill="currentColor">
+                <svg
+                    focusable="false"
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    width={size}
+                    height={size}
+                    fill="currentColor"
+                >
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"></path>
                 </svg>
-                <motion.svg 
-                    focusable="false" 
-                    aria-hidden="true" 
-                    viewBox="0 0 24 24" 
-                    width={size} 
-                    height={size} 
-                    fill="currentColor" 
+                <motion.svg
+                    focusable="false"
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    width={size}
+                    height={size}
+                    fill="currentColor"
                     className="absolute"
                     initial={isChecked ? "animate" : "initial"}
                     animate={isChecked ? "animate" : "initial"}
@@ -61,10 +68,11 @@ export const Radio = forwardRef(({ value, label, onChange, checked, color, size 
             </span>
             {label && <span>{label}</span>}
         </label>
-    );
-});
+        );
+    }
+);
 
-Radio.displayName = "Radio"
+Radio.displayName = "Radio";
 
 Radio.propTypes = {
     value: PropTypes.string,
@@ -74,5 +82,5 @@ Radio.propTypes = {
     color: PropTypes.oneOf(["blue", "red", "green", "indigo", "purple", "pink", "black"]),
     size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     labelPlacement: PropTypes.oneOf(["start", "end", "top", "bottom"]),
-    className: PropTypes.string
-}
+    className: PropTypes.string,
+};

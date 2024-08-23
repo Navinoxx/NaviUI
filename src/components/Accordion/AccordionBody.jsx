@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/utils/cn";
 import { AccordionBodyStyles } from "@/styles/accordion";
-import { useComponentContext } from "@/context/ContextProvider";
+import { useComponentContext } from "@/context/useComponentContext";
 import { openAnimation } from "@/animations/accordion";
 import PropTypes from "prop-types";
 

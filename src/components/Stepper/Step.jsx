@@ -1,5 +1,6 @@
 import { forwardRef, useMemo } from "react";
-import { ContextProvider, useComponentContext } from "@/context/ContextProvider";
+import { ContextProvider } from "@/context/ContextProvider";
+import { useComponentContext } from "@/context/useComponentContext";
 import { connectorStyles, stepIconStyles, stepContainerIconStyles, stepStyles, stepContainerStyles } from "@/styles/stepper";
 import { cn } from "@/utils/cn";
 import { StepContent } from "./StepContent";
