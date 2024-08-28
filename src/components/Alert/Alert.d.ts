@@ -1,9 +1,23 @@
 import { FC } from "react";
 
 interface AlertProps {
-    variant: "success" | "error" | "warning" | "info";
+    severity: "success" | "error" | "warning" | "info";
     message: string;
-    withIcon?: boolean
+    icon?: boolean | React.ReactNode;
+    className?: string | {
+        alert?: string;
+        icon?: string;
+        message?: string;
+        title?: string;
+        closeButton?: string;
+    }
 }
 
-export const Alert: FC<AlertProps>;
+interface AlertTitleProps {
+    className?: string;
+    children: React.ReactNode;
+}
+
+export const Alert: FC<AlertProps> & {
+    Title: FC<AlertTitleProps>;
+};

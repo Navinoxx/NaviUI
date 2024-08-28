@@ -1,27 +1,38 @@
 import { cva } from "class-variance-authority";
 
-export const alertStyles = cva(["flex items-center justify-center w-1"], {
+export const alertStyles = cva(["flex w-full max-w-sm overflow-hidden"], {
     variants: {
-        variant: {
-            success: "bg-green-500 border-l-green-500",
-            error: "bg-red-500 border-l-red-500",
-            warning: "bg-yellow-500 border-l-yellow-500",
-            info: "bg-blue-500 border-l-blue-500",
+        severity: {
+            success: "bg-green-700",
+            error: "bg-red-700",
+            warning: "bg-yellow-700",
+            info: "bg-blue-700",
         },
-        withIcon: {
-            true: "w-12",
-        },
-        
     },
 });
 
-export const titleStyles = cva(["font-semibold"], {
+export const iconStyles = cva(["flex items-center justify-center pl-2 py-2 text-white"]);
+
+export const messageStyles = cva(["flex flex-col justify-center w-full px-2 py-1"], {
     variants: {
-        variant: {
-            success: "text-green-500",
-            error: "text-red-500",
-            warning: "text-yellow-500",
-            info: "text-blue-500",
+        severity: {
+            success: "text-green-200",
+            error: "text-red-200",
+            warning: "text-yellow-200",
+            info: "text-blue-200",
+        },
+    },
+})
+
+export const titleStyles = cva(["font-semibold"])
+
+export const closeButtonStyles = cva(["p-2 m-1 rounded-full hover:bg-opacity-50 transition-all duration-200"], {
+    variants: {
+        severity: {
+            success: "text-green-200 hover:bg-green-400",
+            error: "text-red-200 hover:bg-red-400",
+            warning: "text-yellow-200 hover:bg-yellow-400",
+            info: "text-blue-200 hover:bg-blue-400",
         },
     },
 })

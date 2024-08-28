@@ -125,11 +125,10 @@ export const UseWithAlert = {
                     onClose={handleClose}
                     disableWindowBlurListener
                 >
-                    <Alert
-                        variant="success"
-                        message="This is a success Alert inside a Snackbar!"
-                        withIcon
-                    />
+                    <Alert severity="success">
+                        <Alert.Title>Success</Alert.Title>
+                        Your account was registered!
+                    </Alert>
                 </Snackbar>
             </div>
         )

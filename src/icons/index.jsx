@@ -1,5 +1,6 @@
 export * from "./arrowDown";
 export * from "./chevron";
+export * from "./close";
 export * from "./error";
 export * from "./firstPage";
 export * from "./heart";

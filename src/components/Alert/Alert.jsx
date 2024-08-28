@@ -1,27 +1,65 @@
-import { alertStyles, titleStyles } from "@/styles/alert";
+import { forwardRef } from "react";
+import { alertStyles, closeButtonStyles, iconStyles, messageStyles } from "@/styles/alert";
+import { Success, Error, Warning, Info, Close } from "@/icons";
+import { AlertTitle } from "./AlertTitle";
 import { cn } from "@/utils/cn";
-import { Success, Error, Warning, Info } from "@/icons";
 import PropTypes from "prop-types";
 
-export const Alert = ({ variant, message, withIcon }) => {
-    const title = `${variant.charAt(0).toUpperCase()}${variant.slice(1)}`;
-    const Icon = { success: Success, error: Error, warning: Warning, info: Info }[variant];
+export const Alert = forwardRef(({ severity, icon, onClose, className="", children, ...props }, ref) => {
+    const Icon = { success: Success, error: Error, warning: Warning, info: Info }[severity];
+    const alertClassName = typeof className === "string" ? className : className.alert
 
     return (
-        <div role="alert" className="flex w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-md">
-            <div className={cn(alertStyles({ variant, withIcon }))}>
-                {withIcon && <Icon />}
+        <div
+            ref={ref}
+            role="alert"
+            className={cn(alertStyles({ severity }), alertClassName)}
+            {...props}
+        >
+            {icon !== false && (
+                <div className={cn(iconStyles({ severity }), className.icon)}>
+                    {icon || <Icon />}
+                </div>
+            )}
+            <div className={cn(messageStyles({ severity }), className.message)}>
+                {children}
             </div>
-            <div className="px-4 py-2 mx-3">
-                <span className={cn(titleStyles({ variant }))}>{title}</span>
-                <p className="text-sm text-black">{message}</p>
-            </div>
+            {onClose && (
+                <div>   
+                    <button
+                        type="button"
+                        tabIndex={0}
+                        aria-label="Close"
+                        className={cn(closeButtonStyles({ severity }), className.closeButton)}
+                        onClick={onClose}
+                    >
+                        <Close />
+                    </button>
+                </div>
+            )}
         </div>
     );
-}
+});
+
+Alert.displayName = "Alert"
+
+Object.defineProperty(Alert, "Title", {
+    get() {
+        return AlertTitle;
+    },
+});
 
 Alert.propTypes = {
-    variant: PropTypes.oneOf(["success", "error", "warning", "info"]),
-    message: PropTypes.string,
-    withIcon: PropTypes.bool
+    severity: PropTypes.oneOf(["success", "error", "warning", "info"]),
+    icon: PropTypes.node,
+    onClose: PropTypes.func,
+    className: PropTypes.oneOfType([
+        PropTypes.string, 
+        PropTypes.shape({
+            alert: PropTypes.string, 
+            icon: PropTypes.string, 
+            messageContainer: PropTypes.string, 
+            title: PropTypes.string, 
+            message: PropTypes.string})]),
+    children: PropTypes.node
 }
