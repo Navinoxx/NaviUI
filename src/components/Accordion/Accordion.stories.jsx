@@ -31,9 +31,9 @@ export const Default = {
     },
 }
 
-export const Outline = {
+export const Outlined = {
     args: {
-        variant: "outline",
+        variant: "outlined",
     },
 }
 

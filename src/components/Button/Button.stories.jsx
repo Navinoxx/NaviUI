@@ -1,8 +1,8 @@
 import { Trash } from "@/icons/trash";
 import { Button } from "./Button";
 import { action } from "@storybook/addon-actions";
-import { Stack } from "../Layout";
 import { IconButton } from "../IconButton";
+import { CloudUpload } from "@/icons/cloudUpload";
 
 export default {
     title: 'Components/Button',
@@ -26,74 +26,187 @@ export default {
             control: { type: 'radio' },
         },
     },
+}
+
+export const Basic = {
+    args: {
+        rounded: true,
+        onClick: action('onClick'),
+    },
     render: (args) => (
         <div className="flex gap-5">
-            <Button {...args} color="blue" rounded/>
-            <Button {...args} color="red" rounded/>
-            <Button {...args} color="green" rounded/>
-            <Button {...args} color="indigo" rounded/>
-            <Button {...args} color="purple" rounded/>
-            <Button {...args} color="pink" rounded/>
-            <Button {...args} color="black" rounded/>
+            <Button {...args} variant="solid">
+                Solid
+            </Button>
+            <Button {...args} variant="shadow">
+                Shadow
+            </Button>
+            <Button {...args} variant="outlined">
+                Outlined
+            </Button>
+            <Button {...args} variant="ghost">
+                Ghost
+            </Button>
         </div>
     ),
 }
 
 export const Solid = {
     args: {
-        children: 'Solid',
         variant: 'solid',
+        rounded: true,
         onClick: action('onClick'),
     },
+    render: (args) => (
+        <div className="flex gap-5">
+            <Button {...args}>
+                Solid
+            </Button>
+            <Button {...args} disabled>
+                Disabled
+            </Button>
+            <Button {...args} href="https://google.com" target="_blank" rel="noopener noreferrer">
+                Link
+            </Button>
+        </div>
+    ),
 }
 
 export const Shadow = {
     args: {
-        children: 'Shadow',
         variant: 'shadow',
+        rounded: true,
         onClick: action('onClick'),
     },
+    render: (args) => (
+        <div className="flex gap-5">
+            <Button {...args}>
+                Shadow
+            </Button>
+            <Button {...args} disabled>
+                Disabled
+            </Button>
+            <Button {...args} href="https://google.com" target="_blank" rel="noopener noreferrer">
+                Link
+            </Button>
+        </div>
+    ),
 }
 
-export const Outline = {
+export const Outlined = {
     args: {
-        children: 'Outline',
-        variant: 'outline',
+        variant: 'outlined',
+        rounded: true,
         onClick: action('onClick'),
     },
+    render: (args) => (
+        <div className="flex gap-5">
+            <Button {...args}>
+                Outlined
+            </Button>
+            <Button {...args} disabled>
+                Disabled
+            </Button>
+            <Button {...args} href="https://google.com" target="_blank" rel="noopener noreferrer">
+                Link
+            </Button>
+        </div>
+    ),
 }
 
 export const Ghost = {
     args: {
-        children: 'Ghost',
         variant: 'ghost',
+        rounded: true,
         onClick: action('onClick'),
     },
+    render: (args) => (
+        <div className="flex gap-5">
+            <Button {...args}>
+                Ghost
+            </Button>
+            <Button {...args} disabled>
+                Disabled
+            </Button>
+            <Button {...args} href="https://google.com" target="_blank" rel="noopener noreferrer">
+                Link
+            </Button>
+        </div>
+    ),
+}
+
+export const Color = {
+    args: {
+        rounded: true,
+    },
+    render: (args) => (
+        <div className="flex gap-5">
+            <Button {...args} color="blue">
+                Blue
+            </Button>
+            <Button {...args} color="red" variant="outlined">
+                Red
+            </Button>
+            <Button {...args} color="green" variant="ghost">
+                Green
+            </Button>
+            <Button {...args} color="indigo">
+                Indigo
+            </Button>
+            <Button {...args} color="purple" variant="outlined">
+                Purple
+            </Button>
+            <Button {...args} color="pink" variant="ghost">
+                Pink
+            </Button>
+            <Button {...args} color="black">
+                Black
+            </Button>
+        </div>
+    ),
+}
+
+export const Sizes = {
+    args: {
+        rounded: true,
+    },
+    render: (args) => (
+        <div className="space-x-8">
+            <Button {...args} size="sm">
+                Small
+            </Button>
+            <Button {...args} size="md">
+                Medium
+            </Button>
+            <Button {...args} size="lg">
+                Large
+            </Button>
+        </div>
+    ),
 }
 
 export const IconAndPosition = {
     args: {
         children: 'Delete',
-        variant: 'outline',
+        variant: 'outlined',
+        rounded: true,
         icon: <Trash />,
         onClick: action('onClick'),
     },
     render: (args) => (
-        <Stack direction="row" spacing={2}>
-            <Button {...args} color="blue" iconPosition="start" rounded/>
-            <Button {...args} color="red" iconPosition="end" rounded/>
-            <Button {...args} color="green" iconPosition="top" rounded/>
-            <Button {...args} color="black" iconPosition="bottom" rounded/>
-        </Stack>
+        <div className="flex gap-5">
+            <Button {...args} iconPosition="start"/>
+            <Button {...args} iconPosition="end"/>
+        </div>
     ),
 }
 
-export const Iconbutton = {
+export const IconsButton = {
     args: {
         onClick: action('onClick'),
     },
     render: (args) => (
-        <Stack direction="row" spacing={2}>
+        <div className="flex gap-5">
             <IconButton {...args}>
                 <Trash />
             </IconButton>
@@ -106,6 +219,24 @@ export const Iconbutton = {
             <IconButton {...args} color="green">
                 <Trash />
             </IconButton>
-        </Stack>
+        </div>
+    ),
+}
+
+export const FileUpload = {
+    args: {
+        rounded: true,
+        onClick: action('onClick'),
+        icon: <CloudUpload />,
+        component: 'label',
+    },
+    render: (args) => (
+        <Button {...args}>
+            Upload File
+            <input
+                type="file"
+                className="hidden"
+            />
+        </Button>
     ),
 }

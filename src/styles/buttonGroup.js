@@ -1,46 +1,53 @@
 import { cva } from "class-variance-authority";
 import { direction } from "@/variants/variants";
 
-export const buttonGroupStyles = cva(["flex"], {
+export const buttonGroupStyles = cva(["inline-flex"], {
     variants: {
-        direction: direction,
+        direction,
         rounded: {
             true: "",
-        },
-        space: {
-            true: "space-x-0.5",
         },
     },
     compoundVariants: [
         {
             direction: "row",
-            space: false,
-            className: "[&>button:not(:last-child)]:border-r-0",
+            className: "[&>button:not(:last-child)]:border-r-0 [&>button:not(:first-child)]:border-l-[1px]",
         },
         {
             direction: "column",
-            space: false,
-            className: "[&>button:not(:last-child)]:border-b-0",
+            className: "[&>button:not(:last-child)]:border-b-0 [&>button:not(:first-child)]:border-t-[1px]",
         },
         {
-            direction: "column",
-            space: true,
-            className: "space-y-0.5 space-x-0",
+            direction: "reverseRow",
+            className: "[&>button:not(:last-child)]:border-l-0 [&>button:not(:first-child)]:border-r-[1px]",
         },
         {
-            direction: "column",
-            rounded: true,
-            className: "[&>button:first-child]:rounded-t-md [&>button:last-child]:rounded-b-md",
+            direction: "reverseColumn",
+            className: "[&>button:not(:last-child)]:border-t-0 [&>button:not(:first-child)]:border-b-[1px]",
         },
         {
             direction: "row",
             rounded: true,
             className: "[&>button:first-child]:rounded-l-md [&>button:last-child]:rounded-r-md",
         },
+        {
+            direction: "reverseRow",
+            rounded: true,
+            className: "[&>button:first-child]:rounded-r-md [&>button:last-child]:rounded-l-md",
+        },
+        {
+            direction: "reverseColumn",
+            rounded: true,
+            className: "[&>button:first-child]:rounded-b-md [&>button:last-child]:rounded-t-md",
+        },
+        {
+            direction: "column",
+            rounded: true,
+            className: "[&>button:first-child]:rounded-t-md [&>button:last-child]:rounded-b-md",
+        },
     ],
     defaultVariants: {
         direction: "row",
         rounded: false,
-        space: false,
     },
 });

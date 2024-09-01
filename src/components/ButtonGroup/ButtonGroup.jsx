@@ -1,40 +1,49 @@
-import React ,{ forwardRef } from "react";
+import React ,{ forwardRef, useMemo } from "react";
+import { ContextProvider } from "@/context/ContextProvider";
+import { buttonGroupStyles } from "@/styles/buttonGroup";
 import { cn } from "@/utils/cn";
 import { Button } from "../Button";
-import { buttonGroupStyles } from "@/styles/buttonGroup";
 import PropTypes from "prop-types";
 
-export const ButtonGroup = forwardRef(({ space, direction, rounded, children, className, ...props }) => {
-    let hasButton = false;
+export const ButtonGroup = forwardRef(({ variant, size, color, direction, rounded, children, className, ...props }, ref) => {
+    let hasButton = true;
 
     React.Children.forEach(children, (child) => {
         if (React.isValidElement(child)) {
-            if (child.type === Button) {
-                hasButton = true;
+            if (child.type !== Button) {
+                hasButton = false;
             }
         }
     });
 
     if (!hasButton) {
-        throw new Error("ButtonGroup component requires at least one Button as children");
+        throw new Error("ButtonGroup component requires all children to be Buttons");
     }
 
+    const contextValue = useMemo(() => ({ variant, size, color }), [variant, size, color]);
+
     return (
-        <div 
-            className={cn(buttonGroupStyles({ space, direction, rounded }), className)}
-            {...props}
-        >
-            {children}
-        </div>
+        <ContextProvider value={contextValue}>
+            <div
+                ref={ref}
+                role="group"
+                className={cn(buttonGroupStyles({ direction, rounded }), className)}
+                {...props}
+            >
+                {children}
+            </div>
+        </ContextProvider>
     )
 })
 
 ButtonGroup.displayName = "ButtonGroup"
 
 ButtonGroup.propTypes = {
+    variant: PropTypes.oneOf(["solid", "outlined", "ghost"]),
+    size: PropTypes.oneOf(["sm", "md", "lg"]),
+    color: PropTypes.oneOf(["blue", "green", "red", "indigo", "purple", "pink", "black"]),
     direction: PropTypes.oneOf(["row", "column"]),
     rounded: PropTypes.bool,
-    space: PropTypes.bool,
     className: PropTypes.string,
     children: PropTypes.node,
 }

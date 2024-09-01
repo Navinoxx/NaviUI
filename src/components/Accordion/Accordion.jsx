@@ -71,7 +71,7 @@ Accordion.propTypes = {
     expanded: PropTypes.bool,
     onChange: PropTypes.func,
     icon: PropTypes.node,
-    variant: PropTypes.oneOf(["solid", "shadow", "outline", "ghost"]),
+    variant: PropTypes.oneOf(["solid", "outlined", "ghost"]),
     color: PropTypes.oneOf(["blue", "green", "red", "indigo", "purple", "pink", "black"]),
     children: PropTypes.node,
 }

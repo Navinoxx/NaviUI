@@ -10,21 +10,21 @@ export default {
         layout: 'centered',   
     },
     render: (args) => (
-        <Box className="flex items-center space-x-5">
-            <ButtonGroup {...args}>
-                <Button variant="solid">Upload</Button>
-                <Button variant="solid">Drift</Button>
-                <Button variant="solid">View</Button>
+        <Box className="flex flex-col items-center space-y-5">
+            <ButtonGroup {...args} variant="solid">
+                <Button>Upload</Button>
+                <Button>Drift</Button>
+                <Button>View</Button>
             </ButtonGroup>
-            <ButtonGroup {...args}>
-                <Button variant="outline">Upload</Button>
-                <Button variant="outline">Drift</Button>
-                <Button variant="outline">View</Button>
+            <ButtonGroup {...args} variant="outlined">
+                <Button>Upload</Button>
+                <Button>Drift</Button>
+                <Button>View</Button>
             </ButtonGroup>
-            <ButtonGroup {...args}>
-                <Button variant="ghost">Upload</Button>
-                <Button variant="ghost">Drift</Button>
-                <Button variant="ghost">View</Button>
+            <ButtonGroup {...args} variant="ghost">
+                <Button>Upload</Button>
+                <Button>Drift</Button>
+                <Button>View</Button>
             </ButtonGroup>  
         </Box>
     )
@@ -38,17 +38,54 @@ export const Rounded = {
     }
 }
 
-export const WithSpace = {
+export const SizeAndColor = {
     args: {
-        space: true,
+        variant: 'outlined',
         rounded: true
-    }
+    },
+    render: (args) => (
+        <Box className="flex flex-col items-center space-y-5">
+            <ButtonGroup {...args} size="sm">
+                <Button>Upload</Button>
+                <Button>Drift</Button>
+                <Button>View</Button>
+            </ButtonGroup>
+            <ButtonGroup {...args} color="green">
+                <Button>Upload</Button>
+                <Button>Drift</Button>
+                <Button>View</Button>
+            </ButtonGroup>
+            <ButtonGroup {...args} size="lg" color="red">
+                <Button>Upload</Button>
+                <Button>Drift</Button>
+                <Button>View</Button>
+            </ButtonGroup>  
+        </Box>
+    )
 }
 
-export const DirectionColumn = {
+export const VerticalGroup = {
     args: {
         direction: 'column',
         rounded: true,
-        divide: true
-    }
+    },
+    render: (args) => (
+        <Box className="flex items-center space-x-5">
+            <ButtonGroup {...args} variant="solid">
+                <Button>Upload</Button>
+                <Button>Drift</Button>
+                <Button>View</Button>
+            </ButtonGroup>
+            <ButtonGroup {...args} variant="outlined">
+                <Button>Upload</Button>
+                <Button>Drift</Button>
+                <Button>View</Button>
+            </ButtonGroup>
+            <ButtonGroup {...args} variant="ghost">
+                <Button>Upload</Button>
+                <Button>Drift</Button>
+                <Button>View</Button>
+            </ButtonGroup>  
+        </Box>
+    )
 }

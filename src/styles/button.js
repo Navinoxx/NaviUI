@@ -2,12 +2,12 @@ import { cva } from "class-variance-authority";
 import { bgColor, hoverBgColor, iconPosition } from "@/variants/variants";
 import { combineClasses } from "@/utils/combineClasses";
 
-export const buttonStyles = cva(["font-semibold", "focus:outline-none", "flex", "items-center", "justify-center", "gap-2"], {
+export const buttonStyles = cva(["font-semibold", "focus:outline-none", "inline-flex", "items-center", "justify-center", "gap-2", "cursor-pointer", "transition-all", "duration-200"], {
     variants: {
         variant: {
             solid: "text-white",
             shadow: "text-white shadow-lg",
-            outline: "border-2",
+            outlined: "border-2",
             ghost: "",
         },
         size: {
@@ -20,7 +20,7 @@ export const buttonStyles = cva(["font-semibold", "focus:outline-none", "flex", 
             full: "rounded-full",
         },
         disabled: {
-            true: "opacity-50 pointer-events-none",
+            true: "opacity-50 pointer-events-none select-none",
             false: "",
         },
         iconPosition,
@@ -28,41 +28,41 @@ export const buttonStyles = cva(["font-semibold", "focus:outline-none", "flex", 
     },
     compoundVariants: [
         {
-            variant: ["ghost", "outline"],
-            className: "bg-transparent transition-all duration-300",
+            variant: ["ghost", "outlined"],
+            className: "bg-transparent",
         },
         {
-            variant: "outline",
+            variant: "outlined",
             color: "blue",
             className: "text-blue-500 hover:bg-blue-500 hover:text-white border-blue-500",
         },
         {
-            variant: "outline",
+            variant: "outlined",
             color: "green",
             className: "text-green-500 hover:bg-green-500 hover:text-white border-green-500",
         },
         {
-            variant: "outline",
+            variant: "outlined",
             color: "red",
             className: "text-red-500 hover:bg-red-500 hover:text-white border-red-500",
         },
         {
-            variant: "outline",
+            variant: "outlined",
             color: "indigo",
             className: "text-indigo-500 hover:bg-indigo-500 hover:text-white border-indigo-500",
         },
         {
-            variant: "outline",
+            variant: "outlined",
             color: "purple",
             className: "text-purple-500 hover:bg-purple-500 hover:text-white border-purple-500",
         },
         {
-            variant: "outline",
+            variant: "outlined",
             color: "pink",
             className: "text-pink-500 hover:bg-pink-500 hover:text-white border-pink-500",
         },
         {
-            variant: "outline",
+            variant: "outlined",
             color: "black",
             className: "text-black hover:bg-black hover:text-white border-black",
         },
