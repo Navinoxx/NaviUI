@@ -1,7 +1,6 @@
 import { forwardRef } from "react";
-import { IconAccordionStyles } from "@/styles/accordion";
+import { accordionHeaderStyles, IconAccordionStyles } from "@/styles/accordion";
 import { useComponentContext } from "@/context/useComponentContext";
-import { buttonStyles } from "@/styles/button";
 import { cn } from "@/utils/cn";
 import { motion } from "framer-motion";
 import { iconAnimation } from "@/animations/accordion";
@@ -15,7 +14,7 @@ export const AccordionHeader = forwardRef(({ iconFirst = false, children, classN
             ref={ref}
             role="button"
             aria-expanded={isExpanded}
-            className={cn(buttonStyles({ variant, color }), className)}
+            className={cn(accordionHeaderStyles({ variant, color }), className)}
             onClick={toggleAccordion}
             {...props}
         >

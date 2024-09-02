@@ -7,7 +7,7 @@ import { cn } from "@/utils/cn";
 import { Chevron } from "@/icons";
 import PropTypes from "prop-types";
 
-export const Accordion = forwardRef(({ defaultExpanded, expanded, onChange, icon = <Chevron/>, variant, color, children, ...props }, ref) => {
+export const Accordion = forwardRef(({ defaultExpanded, expanded, onChange, icon = <Chevron/>, variant, color, children, className, ...props }, ref) => {
     const isControlled = expanded !== undefined;
     const [isExpanded, setIsExpanded] = useState(defaultExpanded || false);
 
@@ -45,10 +45,14 @@ export const Accordion = forwardRef(({ defaultExpanded, expanded, onChange, icon
     
     return (
         <ContextProvider value={contextValue}>
-            <div ref={ref} className={cn(accordionStyles())} {...props}>
+            <div 
+                ref={ref} 
+                className={cn(accordionStyles({ variant, color }), className)} 
+                {...props}
+            >
                 {children}
             </div>
-        </ContextProvider>
+        </ContextProvider>  
     )
 });
 
@@ -74,4 +78,5 @@ Accordion.propTypes = {
     variant: PropTypes.oneOf(["solid", "outlined", "ghost"]),
     color: PropTypes.oneOf(["blue", "green", "red", "indigo", "purple", "pink", "black"]),
     children: PropTypes.node,
+    className: PropTypes.string
 }
