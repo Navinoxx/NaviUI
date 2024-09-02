@@ -1,12 +1,12 @@
 import { forwardRef, useState } from "react";
 import { cn } from "@/utils/cn";
-import { checkboxInputStyles, checkboxStyles, checkboxLabelStyles } from "@/styles/checkbox";
+import { checkboxInputStyles, checkboxStyles, checkboxLabelStyles, checkboxContainerStyles } from "@/styles/checkbox";
 import PropTypes from "prop-types";
 
-export const Checkbox = forwardRef(({ label, size, checked, defaultChecked, onChange, id, color, disabled, className, ...props }, ref) => {
+export const Checkbox = forwardRef(({ label, labelPlacement, size, checked, defaultChecked, onChange, id, color, disabled, className="", ...props }, ref) => {
     const [internalChecked, setInternalChecked] = useState(defaultChecked);
-
     const isControlled = checked !== undefined && onChange !== undefined;
+    const currentChecked = isControlled ? checked : internalChecked;
 
     const handleChange = (event) => {
         if (!isControlled) {
@@ -17,10 +17,18 @@ export const Checkbox = forwardRef(({ label, size, checked, defaultChecked, onCh
         }
     };
 
-    const currentChecked = isControlled ? checked : internalChecked;
+    let Component;
+
+    if (label) {
+        Component = "label";
+    } else {
+        Component = "div";
+    }
+
+    const checkboxClassName = typeof className === "string" ? className : className.container
 
     return (
-        <div className="flex items-center relative p-1">
+        <Component className={cn(checkboxContainerStyles({ labelPlacement }), checkboxClassName)}>
             <input
                 ref={ref}
                 type="checkbox"
@@ -33,8 +41,13 @@ export const Checkbox = forwardRef(({ label, size, checked, defaultChecked, onCh
                 aria-label={label}
                 {...props}
             />
+            {label && (
+                <span htmlFor={id} className={cn(checkboxLabelStyles({ labelPlacement }), className.label)}>
+                    {label}
+                </span>
+            )}
             <span
-                className={cn(checkboxStyles({ color, size, disabled }), className)}
+                className={cn(checkboxStyles({ color, size, disabled }), className.checkbox)}
             >
                 {currentChecked && (
                     <svg
@@ -51,12 +64,7 @@ export const Checkbox = forwardRef(({ label, size, checked, defaultChecked, onCh
                     </svg>
                 )}
             </span>
-            {label && (
-                <label htmlFor={id} className={cn(checkboxLabelStyles())}>
-                    {label}
-                </label>
-            )}
-        </div>
+        </Component>
     );
 });
 
@@ -64,6 +72,7 @@ Checkbox.displayName = "Checkbox";
 
 Checkbox.propTypes = {
     label: PropTypes.string,
+    labelPlacement: PropTypes.oneOf(["start", "end", "top", "bottom"]),
     id: PropTypes.string,
     size: PropTypes.oneOf(["sm", "md", "lg"]),
     checked: PropTypes.bool,

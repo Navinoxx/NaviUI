@@ -9,7 +9,11 @@ interface CheckboxProps {
     color?: "blue" | "red" | "green" | "indigo" | "purple" | "pink" | "black";
     size?: "sm" | "md" | "lg";
     disabled?: boolean;
-    className?: string;
+    className?: string | {
+        container?: string;
+        label?: string;
+        checkbox?: string;
+    }
 }
 
-export const Chip: FC<CheckboxProps>;
+export const Checkbox: FC<CheckboxProps>;

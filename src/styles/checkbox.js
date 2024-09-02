@@ -1,4 +1,25 @@
+import { iconPosition } from "@/variants/variants";
 import { cva } from "class-variance-authority";
+
+export const checkboxContainerStyles = cva([
+    "relative",
+    "inline-flex",
+    "items-center",
+    "p-1",
+], {
+    variants: {
+        labelPlacement: iconPosition,
+    },
+    compoundVariants: [
+        {
+            labelPlacement: ["start", "end"],
+            className: "justify-end",
+        },
+    ],
+    defaultVariants: {
+        labelPlacement: "end",
+    }
+})
 
 export const checkboxInputStyles = cva([
     "cursor-pointer",
@@ -47,6 +68,17 @@ export const checkboxStyles = cva([
 })
 
 export const checkboxLabelStyles = cva([
-    "ml-2",
     "text-gray-700",
-], {})
+], {
+    variants: {
+        labelPlacement: {
+            start: "mr-2",
+            end: "ml-2",
+            top: "mb-2",
+            bottom: "mt-2",
+        },
+    },
+    defaultVariants: {
+        labelPlacement: "end",
+    }
+})
