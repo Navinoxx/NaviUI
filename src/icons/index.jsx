@@ -1,4 +1,5 @@
 export * from "./arrowDown";
+export * from "./cancel";
 export * from "./chevron";
 export * from "./close";
 export * from "./error";
