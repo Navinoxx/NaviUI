@@ -1,13 +1,5 @@
-export const NavigateNext = () => {
+import { createSvgIcon } from "@/components/SvgIcon";
 
-    return (
-        <svg
-            focusable="false"
-            aria-hidden="true"
-            viewBox="0 0 24 24"
-            data-testid="NavigateNextIcon"
-        >
-            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
-        </svg>
-    );
-}
+export const NavigateNext = createSvgIcon(
+    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>, "NavigateNext"
+);

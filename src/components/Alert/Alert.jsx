@@ -18,9 +18,9 @@ export const Alert = forwardRef(({ severity, icon, onClose, className="", childr
         >
             {icon !== false && (
                 <div className={cn(iconStyles({ severity }), className.icon)}>
-                    {icon || <Icon />}
+                    {icon || <Icon fontSize="medium" />}
                 </div>
-            )}
+            )}  
             <div className={cn(messageStyles({ severity }), className.message)}>
                 {children}
             </div>

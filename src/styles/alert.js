@@ -26,7 +26,7 @@ export const messageStyles = cva(["flex flex-col justify-center w-full px-2 py-1
 
 export const titleStyles = cva(["font-semibold"])
 
-export const closeButtonStyles = cva(["p-2 m-1 rounded-full hover:bg-opacity-50 transition-all duration-200"], {
+export const closeButtonStyles = cva(["inline-flex items-center justify-center p-2 m-1 rounded-full hover:bg-opacity-50 transition-all duration-200"], {
     variants: {
         severity: {
             success: "text-green-200 hover:bg-green-400",

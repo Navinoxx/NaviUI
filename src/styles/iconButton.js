@@ -2,7 +2,7 @@ import { cva } from "class-variance-authority";
 import { bgColor, hoverBgColor } from "@/variants/variants";
 import { combineClasses } from "@/utils/combineClasses";
 
-export const iconButtonStyles = cva(["focus:outline-none", "flex", "items-center", "justify-center"], {
+export const iconButtonStyles = cva(["focus:outline-none", "inline-flex", "items-center", "justify-center"], {
     variants: {
         variant: {
             solid: "text-white",

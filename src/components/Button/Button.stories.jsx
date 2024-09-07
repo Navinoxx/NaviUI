@@ -206,20 +206,20 @@ export const IconsButton = {
         onClick: action('onClick'),
     },
     render: (args) => (
-        <div className="flex gap-5">
+        <div className="space-x-8">
             <IconButton {...args}>
-                <Trash />
+                <Trash fontSize="small" />
             </IconButton>
             <IconButton {...args} disabled>
-                <Trash />
+                <Trash fontSize="medium" />
             </IconButton>
             <IconButton {...args} color="red">
-                <Trash />
+                <Trash fontSize="large" />
             </IconButton>
             <IconButton {...args} color="green">
-                <Trash />
+                <Trash fontSize="48px" />
             </IconButton>
-        </div>
+        </div> 
     ),
 }
 

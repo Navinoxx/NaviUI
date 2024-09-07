@@ -10,12 +10,14 @@ export default {
     parameters: {
         layout: "centered",
     },
+    args: {
+        children: <Mail fontSize="large"/>,
+    },
 };      
 
 export const Basic = {
     args: {
         content: 5,
-        children: <Mail size={40}/>,
     },
 }
 
@@ -24,7 +26,6 @@ export const Color = {
         content: 5,
         color: ["blue", "red", "green", "indigo", "purple", "pink", "black"],
         placement: "topRight",
-        children: <Mail size={40}/>,
     },
     render: (args) => (
         <div className="flex gap-5">
@@ -38,7 +39,6 @@ export const Placement = {
         content: 5,
         color: "red",
         placement: ["topLeft", "topRight", "bottomLeft", "bottomRight"],
-        children: <Mail size={40}/>,
     },
     render: (args) => (
         <div className="flex gap-5">
@@ -52,7 +52,6 @@ export const Dot = {
         color: ["blue", "red", "green", "indigo", "purple", "pink", "black"],
         placement: "topRight",
         dot: true,
-        children: <Mail size={40}/>,
     },
     render: (args) => (
         <div className="flex gap-5">
@@ -67,7 +66,6 @@ export const MaximumValue = {
         max: 99,
         color: "red",
         placement: "topRight",
-        children: <Mail size={40}/>,
     },
 }
 
@@ -76,7 +74,6 @@ export const BadgeVisibility = {
         color: "red",
         dot: true,
         placement: "topRight",
-        children: <Mail size={40}/>,
     },
     render: (args) => {
         const [visible, setVisible] = useState(true);
@@ -95,7 +92,6 @@ export const ShowZero = {
         color: "red",
         max: 9,
         placement: "topRight",
-        children: <Mail size={40}/>,
     },
     render: (args) => {
         const [count, setCount] = useState(0);

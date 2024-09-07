@@ -61,7 +61,7 @@ export const Rating = ({ name, max = 5, value, defaultValue, icon, iconColor = "
                             className="text-gray-300 transition-colors"
                             style={{ color: ratingValue <= (hover || currentValue) && iconColor }}
                         >
-                            {icon || <Star />}
+                            {icon || <Star fontSize="medium" />}
                         </span>
                     </label>
                     <input 

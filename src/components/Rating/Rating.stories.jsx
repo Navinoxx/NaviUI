@@ -85,7 +85,7 @@ export const Customization = {
                 {...args} 
                 name="customized-color" 
                 defaultValue={2} 
-                icon={<Heart />}
+                icon={<Heart fontSize="medium"/>}
                 iconColor="red"
             />
             <Typography variant="body1">10 stars</Typography>

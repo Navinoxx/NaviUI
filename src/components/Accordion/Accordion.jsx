@@ -7,7 +7,7 @@ import { cn } from "@/utils/cn";
 import { Chevron } from "@/icons";
 import PropTypes from "prop-types";
 
-export const Accordion = forwardRef(({ defaultExpanded, expanded, onChange, icon = <Chevron/>, variant, color, children, className, ...props }, ref) => {
+export const Accordion = forwardRef(({ defaultExpanded, expanded, onChange, icon = <Chevron fontSize="medium"/>, variant, color, children, className, ...props }, ref) => {
     const isControlled = expanded !== undefined;
     const [isExpanded, setIsExpanded] = useState(defaultExpanded || false);
 
