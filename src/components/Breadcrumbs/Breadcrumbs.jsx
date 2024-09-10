@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { forwardRef, useState } from "react";
 import { cn } from "@/utils/cn";
 import { breadcrumbStyles } from "@/styles/breadcrumbs";
 import PropTypes from "prop-types";
 import { Button } from "../Button";
 
-export const Breadcrumbs = ({ separator = "/", maxItems, itemsBeforeCollapse = 1, itemsAfterCollapse = 1, children, className, ...Props }) => {
+export const Breadcrumbs = forwardRef(({ separator = "/", maxItems, itemsBeforeCollapse = 1, itemsAfterCollapse = 1, children, className, ...Props }, ref) => {
     const [expanded, setExpanded] = useState(false);
     const items = React.Children.toArray(children);
 
@@ -32,8 +32,11 @@ export const Breadcrumbs = ({ separator = "/", maxItems, itemsBeforeCollapse = 1
     }
 
     return (
-        <nav>
-            <ol className={cn(breadcrumbStyles(), className)} {...Props}>
+        <nav 
+            ref={ref}
+            {...Props}
+        >
+            <ol className={cn(breadcrumbStyles(), className)}>
                 {renderItems(items).map((child, index) => (
                     <React.Fragment key={index}>
                         <li className="cursor-pointer">{child}</li>
@@ -45,7 +48,9 @@ export const Breadcrumbs = ({ separator = "/", maxItems, itemsBeforeCollapse = 1
             </ol>
         </nav>
     );
-}
+});
+
+Breadcrumbs.displayName = "Breadcrumbs";
 
 Breadcrumbs.propTypes = {
     separator: PropTypes.node,

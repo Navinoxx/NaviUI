@@ -7,14 +7,14 @@ export const IconButton = forwardRef(({ variant, size, rounded, color, onClick, 
 
     return (
         <button
-        ref={ref}
-        className={cn(iconButtonStyles({ variant, size, rounded, color, disabled }), className)}
-        onClick={onClick}
-        disabled={disabled}
-        {...props}
-    >
-        {children}
-    </button>
+            ref={ref}
+            className={cn(iconButtonStyles({ variant, size, rounded, color, disabled }), className)}
+            onClick={onClick}
+            disabled={disabled}
+            {...props}
+        >
+            {children}
+        </button>
     )
 });
 

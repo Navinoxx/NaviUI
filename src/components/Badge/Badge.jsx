@@ -33,7 +33,6 @@ export const Badge = forwardRef(({ content, color, dot, placement, max, invisibl
                         animate="visible"
                         exit="invisible"
                         variants={badgeAnimation}
-                        {...props}
                     >
                         {maxValue}
                     </motion.span>
@@ -45,7 +44,7 @@ export const Badge = forwardRef(({ content, color, dot, placement, max, invisibl
                     initial="visible"
                     animate={controls} 
                     variants={badgeAnimation} 
-                    {...props}>
+                >
                 </motion.span>
             }
             {children}

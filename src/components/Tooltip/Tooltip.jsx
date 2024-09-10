@@ -1,16 +1,17 @@
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import { tooltipContainerStyles, tooltipStyles, arrowStyles } from "@/styles/tooltip";
 import { tooltipAnimation } from "@/animations/tooltip";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/utils/cn";
 import PropTypes from "prop-types";
 
-export const Tooltip = ({ content, children, color, arrow, placement = "top", className, ...props }) => {
+export const Tooltip = forwardRef(({ content, children, color, arrow, placement = "top", className, ...props }, ref) => {
     const [showTooltip, setShowTooltip] = useState(false)
     const toggleTooltip = () => setShowTooltip(prev => !prev)
 
     return (
         <div
+            ref={ref}
             id="tooltip"
             role="tooltip"
             className={cn(tooltipContainerStyles())}
@@ -47,7 +48,7 @@ export const Tooltip = ({ content, children, color, arrow, placement = "top", cl
             </AnimatePresence>
         </div>
     )
-}
+});
 
 Tooltip.displayName = "Tooltip";
 

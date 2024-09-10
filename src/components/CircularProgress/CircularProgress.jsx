@@ -17,6 +17,7 @@ export const CircularProgress = forwardRef(({ size = 44, value = 0, thickness = 
             role="progressbar"
             aria-valuenow={value}
             className={cn(CircularProgressStyles({ color }), className)}
+            {...props}
         >
             <motion.svg
                 width={size}
@@ -25,7 +26,6 @@ export const CircularProgress = forwardRef(({ size = 44, value = 0, thickness = 
                 variants={variant === "indeterminate" ? circularRotate : null}
                 initial="initial"
                 animate="animate"
-                {...props}
             >
                 <motion.circle
                     cx={size}

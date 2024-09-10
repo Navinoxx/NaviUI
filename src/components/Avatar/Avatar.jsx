@@ -1,9 +1,10 @@
 import { forwardRef, useEffect, useRef } from "react";
-import { cn } from "@/utils/cn";
 import { avatarStyles } from "@/styles/avatar";
 import { useLoaded } from "@/hooks/useLoaded";
 import { AvatarFallback } from "./AvatarFallback";
 import { stringToColor } from "@/utils/stringToColor";
+import { cn } from "@/utils/cn";
+import { useForkRef } from "@/hooks/useForkRef";
 import PropTypes from "prop-types";
 
 export const Avatar = forwardRef(({ src, srcSet, alt, altWithColor, crossOrigin, referrerPolicy, size, variant, children, className, ...props}, ref) => {
@@ -11,15 +12,15 @@ export const Avatar = forwardRef(({ src, srcSet, alt, altWithColor, crossOrigin,
     const hasImg = src || srcSet
     const hasImgNotFailing = hasImg && loaded !== 'error'
 
-    const internalRef = useRef();
-    const combinedRef = ref || internalRef;
+    const avatarRef = useRef(null);
+    const handleRef = useForkRef(avatarRef, ref);
 
     useEffect(() => {
         if (altWithColor) {
             const backgroundColor = stringToColor(altWithColor);
-            combinedRef.current.style.backgroundColor = backgroundColor;
+            avatarRef.current.style.backgroundColor = backgroundColor;
         }
-    }, [altWithColor, combinedRef]);
+    }, [altWithColor, avatarRef]);
     
     let CHILDREN = null
 
@@ -42,7 +43,7 @@ export const Avatar = forwardRef(({ src, srcSet, alt, altWithColor, crossOrigin,
     }
 
     return (
-        <div ref={combinedRef} className={cn(avatarStyles({ size, variant }), className)}>
+        <div ref={handleRef} className={cn(avatarStyles({ size, variant }), className)} {...props}>
             {CHILDREN}
         </div>
     )

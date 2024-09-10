@@ -1,10 +1,10 @@
-import React, { useEffect, useId, useState } from "react";
+import React, { forwardRef, useEffect, useId, useState } from "react";
 import { Star } from "@/icons";
 import { cn } from "@/utils/cn";
 import { ratingStyles } from "@/styles/rating";
 import PropTypes from "prop-types";
 
-export const Rating = ({ name, max = 5, value, defaultValue, icon, iconColor = "gold", onChange, onChangeActive, disabled, readOnly, className, ...props }) => {
+export const Rating = forwardRef(({ name, max = 5, value, defaultValue, icon, iconColor = "gold", onChange, onChangeActive, disabled, readOnly, className, ...props }, ref) => {
     const id = useId();
     const [currentValue, setCurrentValue] = useState(defaultValue || value);
     const [hover, setHover] = useState(null);
@@ -73,7 +73,6 @@ export const Rating = ({ name, max = 5, value, defaultValue, icon, iconColor = "
                         onClick={(e) => handleClick(e, ratingValue)}
                         disabled={disabled}
                         readOnly={readOnly}
-                        {...props}
                     />
                 </React.Fragment>
             )
@@ -81,11 +80,17 @@ export const Rating = ({ name, max = 5, value, defaultValue, icon, iconColor = "
     }
 
     return (
-        <span className="flex">
+        <span 
+            ref={ref} 
+            className="flex" 
+            {...props}
+        >
             {renderStars()}
         </span>
     )
-}
+});
+
+Rating.displayName = "Rating";
 
 Rating.propTypes = {
     name: PropTypes.string,

@@ -28,11 +28,11 @@ export const Radio = forwardRef(({ value, label, onChange, checked, color, size 
 
     return (
         <label
+            ref={ref}
             className={cn(radioStyles({ labelPlacement }), className)}
             {...props}
         >
             <input
-                ref={ref}
                 type="radio"
                 aria-hidden="true"
                 className="sr-only"

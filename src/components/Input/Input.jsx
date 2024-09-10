@@ -6,9 +6,12 @@ import PropTypes from "prop-types";
 export const Input = forwardRef(( { id, label, type, color, disabled, className, ...props}, ref) => {
 
     return (
-        <div className="relative h-10">
+        <div
+            ref={ref}
+            className="relative h-10"
+            {...props}
+        >
             <input 
-                ref={ref}
                 id={id}
                 name={label}
                 type={type}
@@ -17,12 +20,10 @@ export const Input = forwardRef(( { id, label, type, color, disabled, className,
                 disabled={disabled}
                 aria-label={label}
                 aria-disabled={disabled}
-                {...props}
             />
             <label 
                 htmlFor={id} 
                 className={cn(labelStyles({ color, disabled }), className)}
-                {...props}
             >
                 {label}
             </label>

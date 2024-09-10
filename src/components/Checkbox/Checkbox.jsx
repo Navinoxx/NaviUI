@@ -28,9 +28,12 @@ export const Checkbox = forwardRef(({ label, labelPlacement, size, checked, defa
     const checkboxClassName = typeof className === "string" ? className : className.container
 
     return (
-        <Component className={cn(checkboxContainerStyles({ labelPlacement }), checkboxClassName)}>
+        <Component
+            ref={ref}
+            className={cn(checkboxContainerStyles({ labelPlacement }), checkboxClassName)}
+            {...props}
+        >
             <input
-                ref={ref}
                 type="checkbox"
                 id={id}
                 checked={currentChecked}
@@ -39,7 +42,6 @@ export const Checkbox = forwardRef(({ label, labelPlacement, size, checked, defa
                 className={cn(checkboxInputStyles())}
                 aria-checked={currentChecked}
                 aria-label={label}
-                {...props}
             />
             {label && (
                 <span htmlFor={id} className={cn(checkboxLabelStyles({ labelPlacement }), className.label)}>

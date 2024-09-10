@@ -1,4 +1,4 @@
-import React, { useState, useRef, useId } from "react";
+import React, { useState, useRef, useId, forwardRef } from "react";
 import { ContextProvider } from "@/context/ContextProvider";
 import { optionStyles, labelSelectStyles, selectStyles } from "@/styles/select";
 import { useClickOutside } from "@/hooks/useClickOutside";
@@ -6,11 +6,12 @@ import { SelectOption } from "./SelectOption";
 import { cn } from "@/utils/cn";
 import PropTypes from "prop-types";
 
-export const Select = ({ id, label, color, multiple, children, className, ...props }) => {
+export const Select = forwardRef(({ id, label, color, multiple, children, className, ...props }, ref) => {
     const ID = useId();
     const [isOpen, setIsOpen] = useState(false);
     const [selectedValues, setSelectedValues] = useState(multiple ? [] : { value:'' , text:''});
     const internalRef = useRef();
+    const combinedRef = ref || internalRef;
 
     useClickOutside(internalRef, () => {
         setIsOpen(false);
@@ -46,7 +47,7 @@ export const Select = ({ id, label, color, multiple, children, className, ...pro
 
     return (
         <ContextProvider value={{ selectedValues, setSelectedValues }}>
-            <div ref={internalRef} className="relative">
+            <div ref={combinedRef} className="relative" {...props}>
                 <div
                     className="relative w-48 h-10 cursor-pointer"
                     onClick={() => setIsOpen(prev => !prev)}
@@ -98,7 +99,6 @@ export const Select = ({ id, label, color, multiple, children, className, ...pro
                         aria-expanded={isOpen}
                         aria-multiselectable={multiple}
                         className={cn(optionStyles())}
-                        {...props}
                     >
                         {children}
                     </ul>
@@ -106,7 +106,9 @@ export const Select = ({ id, label, color, multiple, children, className, ...pro
             </div>
         </ContextProvider>
     )
-}
+});
+
+Select.displayName = "Select"
 
 Object.defineProperty(Select, "Option", {
     get() {

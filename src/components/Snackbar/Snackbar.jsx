@@ -19,8 +19,8 @@ export const Snackbar = forwardRef(({ autoHideDuration, disableWindowBlurListene
         <AnimatePresence>
             {open &&
                 <div
-                    role="presentation"
                     ref={ref}
+                    role="presentation"
                     className={cn(snackbarStyles({ position }))}
                     onBlur={createHandleBlur}
                     onFocus={createHandleFocus}

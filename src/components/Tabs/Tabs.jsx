@@ -39,7 +39,7 @@ export const Tabs = forwardRef(({ defaultValue, orientation, indicatorPosition, 
             </div>
         </ContextProvider>
     )
-})
+});
 
 Tabs.displayName = "Tabs"
 

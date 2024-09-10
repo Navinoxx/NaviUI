@@ -23,12 +23,13 @@ export const Switch = forwardRef(({ label, color, size, disabled, defaultChecked
     }
     
     return (
-        <span 
+        <span
+            ref={ref}
             className={cn(containerStyles({ placement }))}
+            {...props}
         >
             <label htmlFor={id} className="relative inline-flex items-center cursor-pointer">
-                <input 
-                    ref={ref}
+                <input
                     id={id}
                     className="sr-only peer" type="checkbox"
                     disabled={disabled}
@@ -36,7 +37,6 @@ export const Switch = forwardRef(({ label, color, size, disabled, defaultChecked
                     checked={isChecked}
                     onChange={handleChange}
                     aria-checked={checked}
-                    {...props}
                 />
                 <span className={cn(switchStyles({ color, size, disabled }), className)}></span>
             </label>

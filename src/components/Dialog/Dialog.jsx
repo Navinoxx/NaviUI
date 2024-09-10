@@ -6,7 +6,7 @@ import { cn } from "@/utils/cn";
 import PropTypes from "prop-types";
 import { dialogContainerAnimation, dialogAnimation } from "@/animations/dialog";
 
-export const Dialog = forwardRef(({ open, onClose, maxWidth, className, children, ...props }, dialogRef) => {
+export const Dialog = forwardRef(({ open, onClose, maxWidth, className, children, ...props }, ref) => {
     const internalRef = useRef();
 
     useClickOutside(internalRef, () => {
@@ -17,12 +17,13 @@ export const Dialog = forwardRef(({ open, onClose, maxWidth, className, children
         <AnimatePresence>
             {open &&
                 <motion.div
-                    ref={dialogRef}
+                    ref={ref}
                     initial="initial"
                     animate="animate"
                     exit="exit"
                     variants={dialogContainerAnimation}
                     className={cn(dialogContainerStyles())}
+                    {...props}
                 >
                     <motion.dialog
                         ref={internalRef}
@@ -34,7 +35,6 @@ export const Dialog = forwardRef(({ open, onClose, maxWidth, className, children
                         className={cn(dialogStyles({ maxWidth }), className)}
                         open={open}
                         onClose={onClose}
-                        {...props}
                     >
                         {children}
                     </motion.dialog>

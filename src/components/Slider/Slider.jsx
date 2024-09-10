@@ -1,9 +1,9 @@
 import { forwardRef, useEffect } from "react";
 import { markStyles, railStyles, sliderStyles, thumbStyles, trackStyles } from "@/styles/slider";
 import { useSlider } from "@/hooks/useSlider";
+import { Tooltip } from "../Tooltip";
 import { cn } from "@/utils/cn";
 import PropTypes from "prop-types";
-import { Tooltip } from "../Tooltip";
 
 export const Slider = forwardRef(({ min = 0, max, step = 1, marks, initialValue = 0, value, orientation, onChange, disabled, color, valueLabelDisplay, className, railClassName, trackClassName, thumbClassName, marksClassName, ...props }, ref) => {
     const {
