@@ -6,16 +6,16 @@ import { avatarStyles } from "@/styles/avatar";
 import PropTypes from "prop-types";
 
 export const AvatarGroup = forwardRef(({ max = 5, children, className, ...props }, ref) => {
-    let hasAvatar = false
+    let hasAvatar = true
 
     React.Children.forEach(children, (child) => {
-        if (React.isValidElement(child) && child.type === Avatar) {
-            hasAvatar = true
+        if (React.isValidElement(child) && child.type !== Avatar) {
+            hasAvatar = false
         }
     })
 
     if (!hasAvatar) {
-        throw new Error("AvatarGroup component requires at least one Avatar as children")
+        throw new Error("AvatarGroup component requires all children to be Avatars");
     }
 
     let clampedMax = max < 2 ? 2 : max

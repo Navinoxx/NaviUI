@@ -8,16 +8,16 @@ import PropTypes from "prop-types";
 export const RadioGroup = forwardRef(({ defaultValue, value, onChange, orientation, children, className, ...props}, ref) => {
     const [radioState, setRadioState] = useState(value || defaultValue || null);
     
-    let hasRadio = false;
+    let hasRadio = true;
 
     React.Children.forEach(children, (child) => {
-        if (React.isValidElement(child) && child.type === Radio) {
-            hasRadio = true
+        if (React.isValidElement(child) && child.type !== Radio) {
+            hasRadio = false
         }
     })
 
     if (!hasRadio) {
-        throw new Error("RadioGroup component requires at least one Radio as children")
+        throw new Error("RadioGroup component requires all children to be Radios");
     }
 
     const contextValue = useMemo(() => ({ radioState, setRadioState, onChange }), [radioState, setRadioState, onChange]);

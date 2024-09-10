@@ -1,4 +1,4 @@
-import React, { useState, forwardRef, useId } from "react";
+import React, { useState, forwardRef, useId, useMemo } from "react";
 import { ContextProvider } from "@/context/ContextProvider";
 import { tabsStyles } from "@/styles/tabs";
 import { Tab } from "./Tab";
@@ -13,22 +13,22 @@ export const Tabs = forwardRef(({ defaultValue, orientation, indicatorPosition, 
         setValue(newValue)
     }
 
-    let hasTab = false;
+    let hasTab = true;
 
     React.Children.forEach(children, (child) => {
-        if (React.isValidElement(child)) {
-            if (child.type === Tab) {
-                hasTab = true;
-            }
+        if (React.isValidElement(child) && child.type !== Tab) {
+            hasTab = false;
         }
     });
 
     if (!hasTab) {
-        throw new Error("Tabs must contain at least one Tab");
+        throw new Error("Tabs component requires all children to be Tab");
     }
 
+    const contextValue = useMemo(() => ({ value, onChange: onChangeHandler, id, indicatorPosition, indicatorColor, indicatorCustom, textColor }), [value, id, indicatorPosition, indicatorColor, indicatorCustom, textColor]);
+
     return (
-        <ContextProvider value={{ value, onChange: onChangeHandler, id, indicatorPosition, indicatorColor, indicatorCustom, textColor }}>
+        <ContextProvider value={contextValue}>
             <div
                 ref={ref}
                 role="tablist"

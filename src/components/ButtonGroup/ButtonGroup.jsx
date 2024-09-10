@@ -9,10 +9,8 @@ export const ButtonGroup = forwardRef(({ variant, size, color, direction, rounde
     let hasButton = true;
 
     React.Children.forEach(children, (child) => {
-        if (React.isValidElement(child)) {
-            if (child.type !== Button) {
-                hasButton = false;
-            }
+        if (React.isValidElement(child) && child.type !== Button) {
+            hasButton = false;
         }
     });
 

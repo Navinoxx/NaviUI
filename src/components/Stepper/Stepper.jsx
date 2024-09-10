@@ -14,18 +14,16 @@ export const Stepper = forwardRef(({ activeStep, orientation, children, classNam
         })
     })
 
-    let hasStep = false;
+    let hasStep = true;
 
     React.Children.forEach(children, (child) => {
-        if (React.isValidElement(child)) {
-            if (child.type === Step) {
-                hasStep = true;
-            }
+        if (React.isValidElement(child) && child.type !== Step) {
+            hasStep = false;
         }
     });
 
     if (!hasStep) {
-        throw new Error("Stepper component requires at least one Step as children");
+        throw new Error("Stepper component requires all children to be Step");
     }
 
     const contextValue = useMemo(() => ({ activeStep, orientation }), [activeStep, orientation]);
